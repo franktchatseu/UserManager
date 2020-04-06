@@ -38,7 +38,7 @@ export class AuthService {
 signup(login:string,password:string){
     
   
-  this.http.get<user>('http://localhost:8001/connection/'+login+'/'+password).subscribe(
+  this.http.get<user>(this.server+'/connection/'+login+'/'+password).subscribe(
     (data)=>{
       //recuperation de utilisateur
       const user:user=data[0];
@@ -48,7 +48,7 @@ signup(login:string,password:string){
         this.userauth=user;
       }
       else{
-        console.log("utilisateur null");
+        console.log("utilisateur existant");
       }
     }
   )

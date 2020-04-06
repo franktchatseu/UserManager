@@ -70,7 +70,7 @@ emitusers(){
 nommeruser(user:user){
   
   //on envoi utilisateur dans notre backend pour le traitement
-  this.http.get<user>('http://localhost:8001/isadmin/'+user.id).subscribe(
+  this.http.get<user>(this.server+'/isadmin/'+user.id).subscribe(
     (data)=>{
         console.log(data);
        
@@ -87,7 +87,7 @@ nommeruser(user:user){
 retireruser(user:user){ 
   
   //on envoi utilisateur dans notre backend pour le traitement
-  this.http.get<user>('http://localhost:8001/notadmin/'+user.id).subscribe(
+  this.http.get<user>(this.server+'/notadmin/'+user.id).subscribe(
     (data)=>{
         console.log(data);
        
@@ -102,7 +102,7 @@ retireruser(user:user){
 
 adduser(usr:user){
   this.listuser.push(usr);
-      this.http.post<user>(this.server,usr).subscribe(
+      this.http.post<user>(this.server+'/add',usr).subscribe(
         (data)=>{
             console.log(data);
             this.emitusers();
@@ -117,13 +117,13 @@ adduser(usr:user){
 }
 //metohe de modification de la base de donnee
 updateuser(user:user){
-  this.http.post<user>('http://localhost:8001/update',user).subscribe(
+  this.http.post<user>(this.server+'/update',user).subscribe(
     (data)=>{
         console.log(data);
         
     },
     (error)=>{
-      console.log('il ya une erruer'+error);
+      console.log('il ya une erreur de modification'+error);
     }
       );
     
@@ -147,7 +147,7 @@ deleteuser(id:number):Observable<user>{
     isadmin:false,
     isauth:false
   }
-    return this.http.post<user>('http://localhost:8001/delete',user);
+    return this.http.post<user>(this.server+'/delete',user);
       
   
 }
@@ -162,31 +162,12 @@ getOneuser(id:number){
   )
   return user;
 }
-//on recherche un utilisateur par son login et son password
 
-getusernyloginandpassword(login:string,password:string){
-  
-      /*const user:user=this.listuser.find(
-        (userobject)=>{
-          return (userobject.login===login)&&(userobject.password)===password;
-        }
-      )*/
-
-      //recuperation de utilisateur via un appel get
-      
-      this.http.get<any>('http://localhost:8001/connection').subscribe(
-        (data)=>{
-          const usr=data;
-          return usr;
-        }
-      )
-     
-}
 //recuperation de la liste des utilsateur
 alluser(){
   
     //on recupere la liste de nos utilisateur via notre backend laravel
-    this.http.get<any[]>(this.server).subscribe(
+    this.http.get<any[]>(this.server+'/list').subscribe(
       (data)=>{
         this.listuser=data;
         this.emitusers();

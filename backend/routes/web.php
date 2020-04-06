@@ -16,15 +16,22 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+
 //toutes les routes qui se charge des nos users
-Route::get('/user', 'USerController@getuser');
-//la route pour ajout des utilisateurs
-Route::post('/user', 'USerController@adduser');
-Route::post('/delete','USerController@deleteuser');
-Route::get('/isadmin/{id}','USerController@isadmin');
-Route::get('/notadmin/{id}','USerController@notadmin');
-Route::post('/update','USerController@update');
-Route::get('/connection/{login}/{password}','USerController@connection');
+route::group(['prefix'=>'user'],function(){
+
+            Route::get('/list', 'USerController@getuser');
+        //la route pour ajout des utilisateurs
+        Route::post('/add', 'USerController@adduser');
+        Route::post('/delete','USerController@deleteuser');
+        Route::get('/isadmin/{id}','USerController@isadmin');
+        Route::get('/notadmin/{id}','USerController@notadmin');
+        Route::post('/update','USerController@update');
+        Route::get('/connection/{login}/{password}','USerController@connection');
+
+
+});
 
 
 Route::get('/contact', function () {
