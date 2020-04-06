@@ -166,14 +166,21 @@ getOneuser(id:number){
 
 getusernyloginandpassword(login:string,password:string){
   
-      const user:user=this.listuser.find(
+      /*const user:user=this.listuser.find(
         (userobject)=>{
           return (userobject.login===login)&&(userobject.password)===password;
         }
-        
-        
+      )*/
+
+      //recuperation de utilisateur via un appel get
+      
+      this.http.get<any>('http://localhost:8001/connection').subscribe(
+        (data)=>{
+          const usr=data;
+          return usr;
+        }
       )
-     return user;
+     
 }
 //recuperation de la liste des utilsateur
 alluser(){

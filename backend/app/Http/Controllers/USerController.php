@@ -8,12 +8,11 @@ class USerController extends Controller
 {
     //methode pour la gestion des utilisateurs
 
-    public function connection(){
-        $login=request('login');
-        $password=request('password');
+    public function connection($login,$password){
+        
         //recherche de utilisateur correspondant
-        $user=user::all()->where('login','=',$login)->where('password','=',$password);
-
+        $user=user::where('login','=',$login)->where('password','=',$password)->get();
+	
         return $user;        
 
     }

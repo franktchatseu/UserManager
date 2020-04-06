@@ -24,7 +24,7 @@ Route::post('/delete','USerController@deleteuser');
 Route::get('/isadmin/{id}','USerController@isadmin');
 Route::get('/notadmin/{id}','USerController@notadmin');
 Route::post('/update','USerController@update');
-Route::get('/connection','USerController@connection');
+Route::get('/connection/{login}/{password}','USerController@connection');
 
 
 Route::get('/contact', function () {

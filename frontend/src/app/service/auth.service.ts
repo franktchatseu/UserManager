@@ -3,6 +3,8 @@ import { UserService } from './user.service';
 import { user } from '../model/user.model';
 import { resolve } from 'url';
 import { reject } from 'q';
+import { HttpClient } from '@angular/common/http';
+import { RequestOptions } from '@angular/http';
 
 @Injectable({
   providedIn: 'root'
@@ -12,8 +14,16 @@ import { reject } from 'q';
 export class AuthService {
 
   
-  constructor(private userservice:UserService) {
-    this.userauth.isauth=false;
+  headers:Headers=new Headers();
+  options:any;
+  server='http://localhost:8001/user';
+  constructor( private http:HttpClient) 
+  
+  {
+    this.headers.append('enctype','multipart/form-data');;
+    this.headers.append('Content-type','application/json');
+    this.headers.append('X-Requested-With','XMLhttpRequest');
+    this.options=new RequestOptions({});
    }
 
   //sauvegarde de utilisateur connecté
@@ -24,34 +34,24 @@ export class AuthService {
   showspinner=false;
 
   //methode de connection
-  
- /* signup(login:string,password:string){
-    
-    return new Promise(
-      (resolve,reject)=>{
-       
-        setTimeout(() => {
-        this.userservice.getusernyloginandpassword(login,password);
-          
-          
-        }, 2000);
-        resolve(user)
-      }
 
-    )
-  }
-
-}*/
 signup(login:string,password:string){
     
-  const user=this.userservice.getusernyloginandpassword(login,password);
   
-  if(user){
-    user.isauth=true;
-    this.userauth=user;
-  }
-  
-  
+  this.http.get<user>('http://localhost:8001/connection/'+login+'/'+password).subscribe(
+    (data)=>{
+      //recuperation de utilisateur
+      const user:user=data[0];
+      //verification s'il existe
+      if(user!=null){
+        user.isauth=true;
+        this.userauth=user;
+      }
+      else{
+        console.log("utilisateur null");
+      }
+    }
+  )
 }
 //methode de deconnection
 deconnecter(){
