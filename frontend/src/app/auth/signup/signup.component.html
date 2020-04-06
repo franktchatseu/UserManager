@@ -1,0 +1,30 @@
+
+<form [formGroup]="signupgroup" (ngSubmit)="signup()">
+<mat-card>
+        <mat-card-title>
+            Connectez vous
+        </mat-card-title>
+        
+        <mat-card-content>
+                <mat-form-field appearance="outline">
+                        <mat-label for="login">Login</mat-label>
+                        <input type="text"  id="login" formControlName="login" matInput>
+                        
+                </mat-form-field>
+        
+                <mat-form-field appearance="outline">
+                    <mat-label for="password">Password</mat-label>
+                        <input type="password"  id="password" formControlName="password" matInput>
+                    
+            </mat-form-field>
+        </mat-card-content>
+        <mat-card-actions>
+                
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-success" [disabled]="signupgroup.invalid">Connection</button>
+                        </div>
+        </mat-card-actions>
+        
+    
+    </mat-card>
+</form>

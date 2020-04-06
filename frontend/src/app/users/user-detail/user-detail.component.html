@@ -1,0 +1,22 @@
+
+<mat-card>
+        <mat-card-title>
+                <h2>{{user.firstname}} {{user.lastname}}</h2>
+        </mat-card-title>
+        <mat-card-subtitle>
+                <em style="color: green;" *ngIf="user.isadmin">Admin</em>
+                <em style="color: indigo;" *ngIf="!user.isadmin">Membre</em>
+                
+        </mat-card-subtitle>
+        <mat-card-content>
+                
+                <h3>{{user.email}}</h3>
+        </mat-card-content>
+    <mat-card-actions>
+            
+            <button class="btn btn-primary" *ngIf='!user.isadmin && authservice.userauth.isadmin'>Nommer</button>
+            <button class="btn btn-success" *ngIf="authservice.userauth.isadmin" (click)="newupdate()">Update</button>
+    </mat-card-actions>
+    
+
+</mat-card>

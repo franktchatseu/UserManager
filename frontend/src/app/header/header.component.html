@@ -1,0 +1,27 @@
+<nav class="navbar navbar-default" >
+    <div class="container-fluid">
+
+        <ul class="nav navbar-nav" >
+            
+            <li routerLinkActive="active" mat-button [matMenuTriggerFor]="animals"><a routerLink="user/list">Users</a></li>
+            <mat-menu #animals="matMenu">
+                <li mat-menu-item [matMenuTriggerFor]="lists">Lists</li>
+                
+              </mat-menu>
+              <mat-menu #lists="matMenu">
+                <a routerLink="user/list"> <li mat-menu-item >Membres</li></a>
+                <a routerLink="user/list"><li mat-menu-item>Admins</li></a>
+              </mat-menu>
+
+              <li routerLinkActive="active" ><a (click)="detailuser(authservice.userauth.id)">My Profile</a></li>
+
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+            <li routerLinkActive="active"><a routerLink="auth/signup" *ngIf="!authservice.userauth.isauth">Connection</a></li>
+            <li routerLinkActive="active"><a routerLink="auth/signup" (click)="authservice.deconnection()" *ngIf="authservice.userauth.isauth">deconnection</a></li>
+           
+
+        </ul>
+    </div>
+
+</nav>

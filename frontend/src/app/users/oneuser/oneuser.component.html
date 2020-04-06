@@ -1,0 +1,32 @@
+
+
+
+<mat-card >
+        <mat-card-title>
+                <h2>{{user.firstname}} {{user.lastname}}</h2>
+        </mat-card-title>
+        <mat-card-subtitle>
+                <em style="color: green;" *ngIf="user.isadmin">Admin</em>
+                <em style="color: indigo;" *ngIf="!user.isadmin">Membre</em>
+                
+        </mat-card-subtitle>
+        <mat-card-content>
+                
+                <h3>{{user.email}}</h3>
+        </mat-card-content>
+        <mat-card-actions>
+                
+        <button class="btn" (click)="detailuser(user.id)">Detail</button>
+        <button class="btn" *ngIf="user.isadmin && authservice.userauth.isadmin" (click)="retireruser(user)">Retirer</button>
+        <button class="btn btn-primary" *ngIf="!user.isadmin && authservice.userauth.isadmin" (click)="nommeruser(user)">Nommer</button>
+        <button class="btn btn-danger" *ngIf="authservice.userauth.isadmin && present" (click)="open()">Delete</button>
+        <span *ngIf="!present">
+                <em>voulez vous vraiment supprimer?</em>
+                
+                <button class="btn btn-success"  (click)="deleteuser(user.id)">Yes</button>
+                <button class="btn btn-danger"  (click)="close()">No</button>
+        </span>
+        </mat-card-actions>
+        
+    
+    </mat-card>

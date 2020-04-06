@@ -1,0 +1,13 @@
+
+<div  class="col-sm-7 col-sm-offset-1">
+    <button class="btn" *ngIf="authservice.userauth.isadmin"  (click)="newuser()">Add New User</button> 
+
+</div>
+
+    <div  class="col-sm-7 col-sm-offset-1" *ngFor="let user of listuser">
+        
+        <app-oneuser  [user]="user">
+                
+        </app-oneuser>
+    </div>
+    
