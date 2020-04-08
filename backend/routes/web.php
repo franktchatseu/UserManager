@@ -22,6 +22,8 @@ Route::get('/', function () {
 route::group(['prefix'=>'user'],function(){
 
             Route::get('/list', 'USerController@getuser');
+            Route::get('/list/{status}', 'USerController@getlistuserbystatus');
+            
         //la route pour ajout des utilisateurs
         Route::post('/add', 'USerController@adduser');
         Route::post('/delete','USerController@deleteuser');

@@ -26,10 +26,12 @@ import { UpdateComponent } from './users/update/update.component';
 import { SpinnerComponent } from './spinner/spinner.component';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { OneuserComponent } from './users/oneuser/oneuser.component';
+import { JwPaginationComponent } from 'jw-angular-pagination';
 
 const approute=[
   {path:'auth/signup',component:SignupComponent},
-  {path:'user/list',canActivate:[AutorisationService], component:UserlistComponent},
+  
+  {path:'user/list/:status',canActivate:[AutorisationService], component:UserlistComponent},
   {path:'user/edit',canActivate:[AutorisationService],component:UserFormComponent},
   {path:'user/update/:id',canActivate:[AutorisationService],component:UpdateComponent},
   {path:'user/detail/:id',canActivate:[AutorisationService],component:UserDetailComponent}
@@ -48,7 +50,8 @@ const approute=[
     MatComponent,
     UpdateComponent,
     SpinnerComponent,
-    OneuserComponent
+    OneuserComponent,
+    JwPaginationComponent
     
   ],
   imports: [

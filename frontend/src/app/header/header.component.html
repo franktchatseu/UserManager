@@ -3,16 +3,18 @@
 
         <ul class="nav navbar-nav" >
             
-            <li routerLinkActive="active" mat-button [matMenuTriggerFor]="animals"><a routerLink="user/list">Users</a></li>
+            <li routerLinkActive="active" mat-button [matMenuTriggerFor]="animals"><a>Users</a></li>
             <mat-menu #animals="matMenu">
                 <li mat-menu-item [matMenuTriggerFor]="lists">Lists</li>
                 
               </mat-menu>
               <mat-menu #lists="matMenu">
-                <a routerLink="user/list"> <li mat-menu-item >Membres</li></a>
-                <a routerLink="user/list"><li mat-menu-item>Admins</li></a>
+                <a (click)="getliststatus(2)"><li mat-menu-item>Tous</li></a>
+                <a (click)="getliststatus(0)"> <li mat-menu-item >Membres</li></a>
+                <a (click)="getliststatus(1)"><li mat-menu-item>Admins</li></a>
               </mat-menu>
-
+              <li routerLinkActive="active" ><a (click)="getliststatus(0)">List Membres</a></li>
+              <li routerLinkActive="active" ><a (click)="getliststatus(1)">List Admin</a></li>
               <li routerLinkActive="active" ><a (click)="detailuser(authservice.userauth.id)">My Profile</a></li>
 
         </ul>

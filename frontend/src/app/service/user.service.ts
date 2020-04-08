@@ -180,6 +180,20 @@ alluser(){
     
 }
 
+getlistuserbystatus(status){
+    //on recupere la liste de nos utilisateur via notre backend laravel
+    this.http.get<any[]>(this.server+'/list/'+status).subscribe(
+      (data)=>{
+        this.listuser=data;
+        this.emitusers();
+      },
+      (error)=>{
+          console.log('erreur de chargement de la liste des  appareils');
+          //lorsqu'il ya erreur de chargement de la liste on renvoi au moi la liste local
+      }
+    )
+}
+
 //getters qui renvoie la liste des utilisateurs
 getlistusers(){
   return this.listuser;

@@ -76,7 +76,7 @@ export class SignupComponent implements OnInit {
         
         //apres le chargement , si utilisateur est pret, il pourra avoir acces aux autres pages
         if(this.authservice.userauth.isauth){
-          this.route.navigate(['user','list']);
+          this.route.navigate(['user','list',2]);
         }
         else{
           console.log('echec de connection');

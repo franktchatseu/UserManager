@@ -17,4 +17,9 @@ export class HeaderComponent implements OnInit {
   detailuser(id:number){
     this.route.navigate(['user','detail',id]);  
   }
+   //methode pour passer a la mise a jour d'un user
+   getliststatus(status:number){
+    //on se dirige vers le formulaire de modification avec cette user
+    this.route.navigate(['user','list',status]);
+  }
 }

@@ -54,6 +54,8 @@ export class UpdateComponent implements OnInit {
     //affectation de id
     usr.id=this.user.id;
     //on utilise le service
+    console.log(usr);
+
     this.userservice.updateuser(usr);
  }
 }

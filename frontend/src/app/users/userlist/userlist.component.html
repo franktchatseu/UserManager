@@ -1,13 +1,19 @@
-
+<div  class="col-sm-7 col-sm-offset-1">
+        
+</div>
 <div  class="col-sm-7 col-sm-offset-1">
     <button class="btn" *ngIf="authservice.userauth.isadmin"  (click)="newuser()">Add New User</button> 
 
 </div>
+    
 
-    <div  class="col-sm-7 col-sm-offset-1" *ngFor="let user of listuser">
+    <div  class="col-sm-7 col-sm-offset-1" *ngFor="let user of pageOfItems">
         
         <app-oneuser  [user]="user">
                 
         </app-oneuser>
     </div>
     
+    <div class="card-footer pb-0 pt-3">
+            <jw-pagination [items]="listuser" [pageSize]=3 (changePage)="onChangePage($event)"></jw-pagination>
+    </div>

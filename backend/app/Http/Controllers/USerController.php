@@ -30,6 +30,15 @@ class USerController extends Controller
         return $user;
     }
 
+    //controlleur pour recuperer tout les utilisateurs qui sont des membres
+
+    public function getlistuserbystatus($status){
+        //utilisation des scopes
+        $user=user::listuserbystatus($status);
+
+        return $user;
+    }
+
     public function adduser(){
         $data=request();
         
