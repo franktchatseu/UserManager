@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 import { AuthService } from 'src/app/service/auth.service';
 import { UserFormComponent } from '../user-form/user-form.component';
+import { UpfileComponent } from 'src/app/upfile/upfile.component';
 
 @Component({
   selector: 'app-oneuser',
@@ -79,5 +80,10 @@ export class OneuserComponent implements OnInit {
   close(){
     
     this.present=true;
+  }
+
+  //update de image
+  updateimage(){
+    this.dialog.open(UserFormComponent);
   }
 }

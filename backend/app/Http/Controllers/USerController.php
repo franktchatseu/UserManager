@@ -69,7 +69,7 @@ class USerController extends Controller
             $avatar=$request->file('image');
             $filename=$avatar->getClientOriginalName();
             //on sauvegarde l'image dans le repertoire public/upload/avatar que j'ai cree manuellement
-            $image = Image::make($avatar)->resize(300, 200)->save(public_path('/upload/avatar/'.$filename));
+            $image = Image::make($avatar)->resize(380, 500)->save(public_path('/upload/avatar/'.$filename));
         }
         
         

@@ -1,36 +1,46 @@
 
+<!------ Include the above in your HEAD tag ---------->
 
-
-<mat-card >
-        <mat-card-title>
-                <div>
-                        <img width="200px" [src]="avatar" alt="avatar de utilisateur">
-
+<div class="container">
+    <div class="row">
+        <div class="col-xs-12 col-sm-6 col-md-6">
+            <div class="well well-sm">
+                <div class="row">
+                    <div class="col-sm-6 col-md-4">
+                        <button class="btn"><img width="380px" height="500px" [src]="avatar" alt="avatar de utilisateur" class="img-rounded img-responsive" /></button>
+                    </div>
+                    <div class="col-sm-6 col-md-8">
+                        <h4>
+                                {{user.firstname}} {{user.lastname}}</h4>
+                        <small><cite title="San Francisco, USA">San Francisco, USA <i class="glyphicon glyphicon-map-marker">
+                        </i></cite></small>
+                        <p>
+                            <i class="glyphicon glyphicon-envelope"></i>{{user.email}}
+                            <br />
+                            <i class="glyphicon glyphicon-globe"></i><a href="http://www.jquery2dotnet.com">www.jquery2dotnet.com</a>
+                            <br />
+                            <i class="glyphicon glyphicon-gift"></i> 
+                                    <em style="color: green;" *ngIf="user.isadmin">Admin</em>
+                                    <em style="color: indigo;" *ngIf="!user.isadmin">Membre</em>
+                        
+                        </p>
+                        <!-- Split button -->
+                        <div class="btn-group">
+                            <button class="btn" (click)="detailuser(user.id)">Detail</button>
+                            <button class="btn" *ngIf="user.isadmin && authservice.userauth.isadmin" (click)="retireruser(user)">Retirer</button>
+                            <button class="btn btn-primary" *ngIf="!user.isadmin && authservice.userauth.isadmin" (click)="nommeruser(user)">Nommer</button>
+                            <button class="btn btn-danger" *ngIf="authservice.userauth.isadmin && present" (click)="open()">Delete</button>
+                            <span *ngIf="!present">
+                                    <em>voulez vous vraiment supprimer?</em>
+                                    
+                                    <button class="btn btn-success"  (click)="deleteuser(user.id)">Yes</button>
+                                    <button class="btn btn-danger"  (click)="close()">No</button>
+                            </span>
+                        </div>
+                    </div>
                 </div>
-                <h2>{{user.firstname}} {{user.lastname}}</h2>
-        </mat-card-title>
-        <mat-card-subtitle>
-                <em style="color: green;" *ngIf="user.isadmin">Admin</em>
-                <em style="color: indigo;" *ngIf="!user.isadmin">Membre</em>
-                
-        </mat-card-subtitle>
-        <mat-card-content>
-                
-                <h3>{{user.email}}</h3>
-        </mat-card-content>
-        <mat-card-actions>
-                
-        <button class="btn" (click)="detailuser(user.id)">Detail</button>
-        <button class="btn" *ngIf="user.isadmin && authservice.userauth.isadmin" (click)="retireruser(user)">Retirer</button>
-        <button class="btn btn-primary" *ngIf="!user.isadmin && authservice.userauth.isadmin" (click)="nommeruser(user)">Nommer</button>
-        <button class="btn btn-danger" *ngIf="authservice.userauth.isadmin && present" (click)="open()">Delete</button>
-        <span *ngIf="!present">
-                <em>voulez vous vraiment supprimer?</em>
-                
-                <button class="btn btn-success"  (click)="deleteuser(user.id)">Yes</button>
-                <button class="btn btn-danger"  (click)="close()">No</button>
-        </span>
-        </mat-card-actions>
-        
-    
-    </mat-card>
+            </div>
+        </div>
+    </div>
+</div>
+

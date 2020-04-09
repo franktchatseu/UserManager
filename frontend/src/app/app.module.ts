@@ -30,6 +30,7 @@ import { JwPaginationComponent } from 'jw-angular-pagination';
 import { UpfileComponent } from './upfile/upfile.component';
 
 const approute=[
+  {path:'',component:SignupComponent},
   {path:'auth/signup',component:SignupComponent},
   
   {path:'user/list/:status',canActivate:[AutorisationService], component:UserlistComponent},
