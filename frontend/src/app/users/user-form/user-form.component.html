@@ -1,4 +1,4 @@
-<form [formGroup]="usergroup" (ngSubmit)="adduser()">
+<form [formGroup]="usergroup" (ngSubmit)="adduser()" enctype="multipart/form-data">
 
     <div class="form-group" >
         <label for="firstname">Firstname</label>
@@ -20,6 +20,10 @@
         <label for="password">Password</label>
         <input type="password" class="form-control" id="password" formControlName="password">
     </div>
+    <div class="form-group">
+            <label for="password">Avatar</label>
+            <input type="file" class="form-control" id="avatar" (change)="detectfile($event)" accept="image/*">
+        </div>
     <div class="form-group">
        <button type="submit" class="btn btn-success" [disabled]="usergroup.invalid">Add</button>
     </div>

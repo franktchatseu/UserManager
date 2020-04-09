@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Requests;
 use App\user;
+use Image;
 class USerController extends Controller
 {
     //methode pour la gestion des utilisateurs
@@ -18,7 +20,7 @@ class USerController extends Controller
     }
 
     public function getuser(){
-        $user=user::all();
+        $user=user::orderby('id','desc')->get();
 
         //recuperation de tous les utilisateur qui ont pour status 1
         //utilisation de la clause where avec eloquent
@@ -30,6 +32,15 @@ class USerController extends Controller
         return $user;
     }
 
+    public function upload(Request $request){
+
+        //dd($request->file('image')->getClientOriginalName());
+
+        
+        $filename=$request->file('image')->getClientOriginalName();
+        dd($filename);
+       
+    }
     //controlleur pour recuperer tout les utilisateurs qui sont des membres
 
     public function getlistuserbystatus($status){
@@ -39,23 +50,36 @@ class USerController extends Controller
         return $user;
     }
 
-    public function adduser(){
+    public function adduser(Request $request){
+
+       // dd($request->file('image')->getClientOriginalName());
         $data=request();
         
+
         $user=new user();
         $firstname=request('firstname');
         $lastname=request('lastname');
         $email=request('email');
         $login=request('login');
         $password=request('password');
-        $status=request('isadmin');
+        $status=0;
 
+        //recuperetion du fichier image
+        if($request->hasFile('image')){
+            $avatar=$request->file('image');
+            $filename=$avatar->getClientOriginalName();
+            //on sauvegarde l'image dans le repertoire public/upload/avatar que j'ai cree manuellement
+            $image = Image::make($avatar)->resize(300, 200)->save(public_path('/upload/avatar/'.$filename));
+        }
+        
+        
         $user->firstname=$firstname;
         $user->lastname=$lastname;
         $user->email=$email;
         $user->login=$login;
         $user->password=$password;
         $user->isadmin=$status;
+        $user->avatar=$filename;
         //on ajoute dans la base de donnee
         $user->save();
         $user=user::all();

@@ -13,6 +13,7 @@ import { MatDialogModule, MatDialog } from '@angular/material/dialog';
 export class UserFormComponent implements OnInit {
 
   usergroup:FormGroup;
+  avatar:File;
   constructor(private formbuilder:FormBuilder,
               private userservice:UserService,
               private route:Router,
@@ -32,6 +33,7 @@ export class UserFormComponent implements OnInit {
         email:['',[Validators.required,Validators.email]],
         login:['',[Validators.required]],
         password:['',[Validators.required]]
+        
       }
     )
   }
@@ -44,12 +46,32 @@ export class UserFormComponent implements OnInit {
     const lastname=valeur['lastname'];
     const email=valeur['email'];
     const login=valeur['login'];
-    const password=valeur['password']
+    const password=valeur['password'];
+
+    
     //on construit utilisateur
-    const usr:user=new user(firstname,lastname,email,login,password,false);
+   // const usr:user=new user(firstname,lastname,email,login,password,false);
+    // recuperation de image et des info de user
+    var formdata=new FormData();
+    formdata.append("image",this.avatar,this.avatar.name);
+    formdata.append("firstname",firstname);
+    formdata.append("lastname",lastname);
+    formdata.append("email",email);
+    formdata.append("login",login);
+    formdata.append("password",password);
     //on ajoute maintenant en utilisant le service
-    this.userservice.adduser(usr);
-    alert("ajout reussi");
+    
+
+    //console.log(usr)
+    this.userservice.adduser(formdata);
+   // alert("ajout reussi");
     this.dialog.closeAll;
   }
+
+  //recuperation du fichier
+
+  detectfile(event){
+    this.avatar=event.target.files[0];
+    }
+  
 }

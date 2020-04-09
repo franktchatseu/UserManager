@@ -15,7 +15,9 @@ class user extends Model
         return $query->where('isadmin','=','1')->get();
     }
     //methode de suppression d'un user
-    
+    public function scopedeluser($query,$id){
+        return $query->where('id',$id)->delete();
+    }
 
     
 }

@@ -55,7 +55,7 @@ export class UserlistComponent implements OnInit,OnDestroy {
 
   //les methodes local
   adduser(user:user){
-    this.userservice.adduser(user);
+   // this.userservice.adduser(user);
   }
   
   //recuperation de tout les users

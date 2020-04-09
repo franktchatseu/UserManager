@@ -9,6 +9,7 @@ export class user{
     public password:string;
     public isadmin:boolean;
     public isauth:boolean;
+    public avatar:string;
 
     //constructeur avec parametres
     constructor(firstname, lastname,email,login,password,isadmin){
@@ -20,6 +21,7 @@ export class user{
         this.password=password;
         //par defaud, l'utilisateur cree n'est pas un administrateur
         this.isadmin=isadmin;
+        
     }
     //constructeur sans parametre
 

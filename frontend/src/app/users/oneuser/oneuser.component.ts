@@ -16,20 +16,24 @@ export class OneuserComponent implements OnInit {
   constructor(private userservice:UserService,
     private route:Router,
     private dialog:MatDialog,
-    private authservice:AuthService) { }
+    private authservice:AuthService) { 
+     
+    }
     
 
   ngOnInit() {
+    this.avatar='http://localhost:8001/upload/avatar/'+this.user.avatar;
   }
 
   @Input() user:user
+  @Input() avatar:string  
 
   @Input() present:boolean=true;
 
 
   //les methodes local
   adduser(user:user){
-    this.userservice.adduser(user);
+    //this.userservice.adduser(user);
   }
   deleteuser(id:number){
     

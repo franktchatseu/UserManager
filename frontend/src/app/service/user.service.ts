@@ -28,36 +28,7 @@ export class UserService {
 //propriete
 //besoin d'un tableau pour stocker tous nos utilisateurs
 
-listuser:user[]=[{
-  id:1,
-  firstname:"Tchaseu",
-  lastname:"Frank",
-  email:"louenkamfrank@gmail.com",
-  login:"ds",
-  password:"ds",
-  isadmin:false,
-  isauth:false
-},
-{
-  id:2,
-  firstname:"Nono",
-  lastname:"Guy",
-  email:"nonoguy@gmail.com",
-  login:"d",
-  password:"d",
-  isadmin:true,
-  isauth:false
-},
-{
-  id:3,
-  firstname:"Komegne",
-  lastname:"liliane",
-  email:"liliane@gmail.com",
-  login:"fj",
-  password:"fj",
-  isadmin:false,
-  isauth:false
-}
+listuser:user[]=[
 ];
 usersubject=new Subject<any[]>();
 
@@ -100,19 +71,11 @@ retireruser(user:user){
 }
 //on peut ajouter un nouvel utilisateur
 
-adduser(usr:user){
-  this.listuser.push(usr);
-      this.http.post<user>(this.server+'/add',usr).subscribe(
-        (data)=>{
-            console.log(data);
-            this.emitusers();
-        },
-        (error)=>{
-          console.log('il ya une erruer'+error);
-        }
-          );
-        
-     
+adduser(formdata:FormData){
+  //this.listuser.push(usr);
+      this.http.post<user>(this.server+'/add',formdata).subscribe(
+
+      )
      
 }
 //metohe de modification de la base de donnee
@@ -170,6 +133,7 @@ alluser(){
     this.http.get<any[]>(this.server+'/list').subscribe(
       (data)=>{
         this.listuser=data;
+        console.log(data);
         this.emitusers();
       },
       (error)=>{

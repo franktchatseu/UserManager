@@ -27,6 +27,7 @@ import { SpinnerComponent } from './spinner/spinner.component';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { OneuserComponent } from './users/oneuser/oneuser.component';
 import { JwPaginationComponent } from 'jw-angular-pagination';
+import { UpfileComponent } from './upfile/upfile.component';
 
 const approute=[
   {path:'auth/signup',component:SignupComponent},
@@ -51,7 +52,8 @@ const approute=[
     UpdateComponent,
     SpinnerComponent,
     OneuserComponent,
-    JwPaginationComponent
+    JwPaginationComponent,
+    UpfileComponent
     
   ],
   imports: [
