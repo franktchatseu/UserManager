@@ -52,7 +52,8 @@
                                                 <button type="button" routerLink="/user/list/2" class="btn btn-outline-secondary">Back</button>
                                 </div>
                                 <div class="col-xs-6 col-sm-3 col-md-2 col-lg-3 social-btn-holder">
-                                                <button class="btn btn-primary" *ngIf='!user.isadmin && authservice.userauth.isadmin'>Nommer</button>
+                                                <button class="btn" *ngIf="user.isadmin && authservice.userauth.isadmin" (click)="retireruser(user)">Retirer</button>
+                                                <button class="btn btn-primary" *ngIf="!user.isadmin && authservice.userauth.isadmin" (click)="nommeruser(user)">Nommer</button>
                                 </div>
                                 <div class="col-xs-6 col-sm-3 col-md-2 col-lg-3 social-btn-holder">
                                                <button class="btn btn-success" *ngIf="authservice.userauth.isadmin" (click)="newupdate()">Update</button>

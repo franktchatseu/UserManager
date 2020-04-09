@@ -21,7 +21,7 @@
         <input type="password" class="form-control" id="password" formControlName="password">
     </div>
     <div class="form-group">
-        <a routerLink="/user/list/2">Retour à la liste</a>
-       <button type="submit" class="btn btn-success" [disabled]="usergroup.invalid" >Update</button>
+            <button type="button" routerLink="/user/list/2" class="btn btn-outline-secondary">Back</button>
+            <button type="submit" class="btn btn-success" [disabled]="usergroup.invalid" >Update</button>
     </div>
 </form>

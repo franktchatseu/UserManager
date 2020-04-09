@@ -72,10 +72,15 @@ retireruser(user:user){
 //on peut ajouter un nouvel utilisateur
 
 adduser(formdata:FormData){
-  //this.listuser.push(usr);
+  
       this.http.post<user>(this.server+'/add',formdata).subscribe(
-
+        (data)=>{
+          this.listuser.push(data);
+          this.emitusers();
+        }
       )
+      
+      
      
 }
 //metohe de modification de la base de donnee

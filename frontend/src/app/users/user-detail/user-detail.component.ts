@@ -36,7 +36,37 @@ export class UserDetailComponent implements OnInit {
     //on se dirige vers le formulaire de modification avec cette user
     this.route.navigate(['user','update',this.user.id]);
   }
+  //suppression
+  deleteuser(id:number){
+    
+    this.userservice.deleteuser(id).subscribe(
+
+      (data)=>{
+          //on recupere la liste de tous les users
+          console.log("on a supprimer utilisateur de nom "+data.firstname);
+          this.userservice.alluser();
+          this.userservice.emitusers();
+          this.route.navigate(['user','list',2]);
+      }
+    );
+     
   
+  }
+  
+   //mettre  en tant admin
+
+   nommeruser(user:user){
+    this.userservice.nommeruser(user);
+    user.isadmin=true;
+  }
+  
+  //returer utilisateur comme administrateur
+  retireruser(user:user){
+    this.userservice.retireruser(user);
+    user.isadmin=false;
+    
+  }
+
   //gestion de la confirmation de suppressioin 
   open(){
     

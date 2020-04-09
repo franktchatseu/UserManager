@@ -59,13 +59,15 @@ export class UserFormComponent implements OnInit {
     formdata.append("email",email);
     formdata.append("login",login);
     formdata.append("password",password);
+    
     //on ajoute maintenant en utilisant le service
     
 
     //console.log(usr)
     this.userservice.adduser(formdata);
    // alert("ajout reussi");
-    this.dialog.closeAll;
+    this.dialog.closeAll();
+    
   }
 
   //recuperation du fichier

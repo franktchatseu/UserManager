@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { UserService } from 'src/app/service/user.service';
 import { user } from 'src/app/model/user.model';
 
@@ -15,7 +15,8 @@ export class UpdateComponent implements OnInit {
   usergroup:FormGroup
   constructor(private formbuilder:FormBuilder,
               private routeactivate:ActivatedRoute,
-              private userservice:UserService) { }
+              private userservice:UserService,
+              private route:Router) { }
 
   ngOnInit() {
      //recuperation des info de utilisateur
@@ -54,8 +55,14 @@ export class UpdateComponent implements OnInit {
     //affectation de id
     usr.id=this.user.id;
     //on utilise le service
-    console.log(usr);
+    //console.log(usr);
 
     this.userservice.updateuser(usr);
+
+    this.userservice.alluser();
+    //this.userservice.emitusers();
+    
+    this.route.navigate(['user','detail',usr.id]);  
+   
  }
 }

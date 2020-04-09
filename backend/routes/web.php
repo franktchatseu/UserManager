@@ -30,7 +30,7 @@ route::group(['prefix'=>'user'],function(){
         Route::post('/delete','USerController@deleteuser');
         Route::get('/isadmin/{id}','USerController@isadmin');
         Route::get('/notadmin/{id}','USerController@notadmin');
-        Route::post('/updatclass="form-group"e','USerController@update');
+        Route::post('/update','USerController@update');
         Route::get('/connection/{login}/{password}','USerController@connection');
 
 
