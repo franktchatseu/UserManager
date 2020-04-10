@@ -55,6 +55,7 @@ export class UpdateComponent implements OnInit {
     //affectation de id
     usr.id=this.user.id;
     //on utilise le service
+    
     //console.log(usr);
 
     this.userservice.updateuser(usr);
@@ -62,7 +63,7 @@ export class UpdateComponent implements OnInit {
     this.userservice.alluser();
     //this.userservice.emitusers();
     
-    this.route.navigate(['user','detail',usr.id]);  
+    this.route.navigate(['user','list',2]);  
    
  }
 }

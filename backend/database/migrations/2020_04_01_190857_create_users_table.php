@@ -22,9 +22,10 @@ class CreateUsersTable extends Migration
             $table->string('login', 100);
             $table->string('password');
             $table->integer('isadmin');
-            $table->string('avatar')->default('aschool.png');
+            $table->string('avatar')->default('impressing.jpg');
             $table->timestamps();
         });
+        
     }
 
     /**
