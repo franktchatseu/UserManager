@@ -128,4 +128,9 @@ export class UserlistComponent implements OnInit,OnDestroy {
     // update current page of items
     this.pageOfItems = pageOfItems;
 }
+
+  getid(){
+    const id=this.routeactivate.snapshot.params['status'];
+    return id;
+  }
 }

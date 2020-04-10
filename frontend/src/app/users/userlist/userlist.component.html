@@ -1,3 +1,9 @@
+<span style="color: cadetblue;" class="col-sm-7 col-sm-offset-2 entetelist">
+        <h1 *ngIf="getid()==2">Liste de tous les Utilisateurs</h1>
+        <h1 *ngIf="getid()==1">Liste des Administrateurs</h1>*
+        <h1 *ngIf="getid()==0">Liste des Membres</h1>
+</span>
+
 <span  class="col-sm-7 col-sm-offset-2 entetelist">
         <form [formGroup]="recherchegroup" (ngSubmit)="rechercher()">
             

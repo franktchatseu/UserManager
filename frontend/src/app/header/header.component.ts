@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../service/auth.service';
 import { Router } from '@angular/router';
+import { UserService } from '../service/user.service';
 
 @Component({
   selector: 'app-header',
@@ -9,7 +10,7 @@ import { Router } from '@angular/router';
 })
 export class HeaderComponent implements OnInit {
 
-  constructor(private authservice:AuthService,private route:Router) { }
+  constructor(private authservice:AuthService,private route:Router,private userservice:UserService) { }
 
   ngOnInit() {
   }
@@ -20,6 +21,11 @@ export class HeaderComponent implements OnInit {
    //methode pour passer a la mise a jour d'un user
    getliststatus(status:number){
     //on se dirige vers le formulaire de modification avec cette user
+    if(status!=2)
+      this.userservice.getlistuserbystatus(status);
+    else 
+      this.userservice.alluser();
+      
     this.route.navigate(['user','list',status]);
   }
 }

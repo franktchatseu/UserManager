@@ -5,7 +5,7 @@
             
             <li routerLinkActive="active" mat-button [matMenuTriggerFor]="animals"><a>Users</a></li>
             <mat-menu #animals="matMenu">
-                <li mat-menu-item [matMenuTriggerFor]="lists">Lists</li>
+                <li mat-menu-item [matMenuTriggerFor]="lists">Liste</li>
                 
               </mat-menu>
               <mat-menu #lists="matMenu">
@@ -13,8 +13,7 @@
                 <a (click)="getliststatus(0)"> <li mat-menu-item >Membres</li></a>
                 <a (click)="getliststatus(1)"><li mat-menu-item>Admins</li></a>
               </mat-menu>
-              <li routerLinkActive="active" ><a (click)="getliststatus(0)">List Membres</a></li>
-              <li routerLinkActive="active" ><a (click)="getliststatus(1)">List Admin</a></li>
+              
               <li routerLinkActive="active" ><a (click)="detailuser(authservice.userauth.id)">My Profile</a></li>
 
         </ul>
