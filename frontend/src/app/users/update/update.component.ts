@@ -22,7 +22,7 @@ export class UpdateComponent implements OnInit {
      //recuperation des info de utilisateur
     //on recupere id de utilisateur
     const id=this.routeactivate.snapshot.params['id'];
-    this.user=this.userservice.getOneuser(+id);
+    this.user=this.getOne(+id);
     this.intform();
   }
 
@@ -65,5 +65,15 @@ export class UpdateComponent implements OnInit {
     
     this.route.navigate(['user','list',2]);  
    
+ }
+
+
+ getOne(id:number){
+  const user:user=this.userservice.listuser.find(
+    (userobjet)=>{
+      return userobjet.id===id;
+    }
+  )
+  return user;
  }
 }

@@ -19,6 +19,12 @@ class USerController extends Controller
 
     }
 
+    public function getuserbyid($id){
+
+        $user=user::where('id','=',$id)->get();
+        return $user;
+    }
+
     public function getuser(){
         $user=user::orderby('id','desc')->get();
 

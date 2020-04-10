@@ -122,13 +122,15 @@ deleteuser(id:number):Observable<user>{
 
 
 //recuperer un utilisateur par son id
-getOneuser(id:number){
+getOneuser(id:number):Observable<any[]>{
+  /*this.alluser();
   const user:user=this.listuser.find(
     (userobjet)=>{
       return userobjet.id===id;
     }
   )
-  return user;
+  return user;*/
+  return this.http.get<any[]>(this.server+'/oneuser/'+id);
 }
 
 //recuperation de la liste des utilsateur

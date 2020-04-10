@@ -32,7 +32,7 @@ route::group(['prefix'=>'user'],function(){
         Route::get('/notadmin/{id}','USerController@notadmin');
         Route::post('/update','USerController@update');
         Route::get('/connection/{login}/{password}','USerController@connection');
-
+        Route::get('/oneuser/{id}','USerController@getuserbyid');
 
 });
 

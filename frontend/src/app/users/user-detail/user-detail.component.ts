@@ -11,24 +11,33 @@ import { AuthService } from 'src/app/service/auth.service';
 })
 export class UserDetailComponent implements OnInit {
 
-  user:user;
+  @Input() user:user;
   @Input() avatar:string 
   @Input() present:boolean=true;
   constructor( private routeactivate:ActivatedRoute,
                 private userservice:UserService,
                 private route:Router,
                 private authservice:AuthService) {
-
-                  
-                }
+   }
 
   ngOnInit() {
     
     //recuperation des info de utilisateur
     //on recupere id de utilisateur
+    
     const id=this.routeactivate.snapshot.params['id'];
-    this.user=this.userservice.getOneuser(+id);
-    this.avatar='http://localhost:8001/upload/avatar/'+this.user.avatar;
+    this.userservice.getOneuser(+id).subscribe(
+      (data)=>{
+        console.log("vli la "+data[0])
+        this.user=data[0];
+        this.avatar='http://localhost:8001/upload/avatar/'+this.user.avatar;
+      },
+      (error)=>{
+        console.log("il ya eroor"+error);
+        
+      }
+    );
+    //this.avatar='http://localhost:8001/upload/avatar/'+this.user.avatar;
   }
 
   //methode pour passer a la mise a jour d'un user

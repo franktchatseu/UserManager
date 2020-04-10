@@ -19,5 +19,9 @@ class user extends Model
         return $query->where('id',$id)->delete();
     }
 
+    //methode pour recuperer les users
+    public function scopeuserbyid($query,$id){
+        return $query->where('id',$id)->get();
+    }
     
 }
