@@ -28,8 +28,7 @@
                         <!-- Split button -->
                         <div class="btn-group">
                             <button class="btn" (click)="detailuser(user.id)">Detail</button>
-                            <button class="btn" *ngIf="user.isadmin && authservice.userauth.isadmin" (click)="retireruser(user)">Retirer</button>
-                            <button class="btn btn-primary" *ngIf="!user.isadmin && authservice.userauth.isadmin" (click)="nommeruser(user)">Nommer</button>
+                            
                             <button class="btn btn-danger" *ngIf="authservice.userauth.isadmin && present" (click)="open()">Delete</button>
                             <span *ngIf="!present">
                                     <em>voulez vous vraiment supprimer?</em>

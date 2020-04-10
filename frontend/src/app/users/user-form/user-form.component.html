@@ -1,38 +1,99 @@
-
 <div class="card">
-        <div class="card-header"><h1>Ajouter un nouvel utilisateur</h1></div>
+        <div class="card-header"><h1 style="color: cadetblue;"> Nouvel Utilisateur</h1></div>
         <div class="card-body">
+            <br/>
 
-                <form [formGroup]="usergroup" (ngSubmit)="adduser()" enctype="multipart/form-data">
-
-                    <div class="form-group" >
-                        <label for="firstname">Firstname</label>
-                        <input type="text" class="form-control" id="firstname" formControlName="firstname">
-                    </div>
-                    <div class="form-group">
-                        <label for="lastname">Lastname</label>
-                        <input type="text" class="form-control" id="lastname" formControlName="lastname">
-                    </div>
-                    <div class="form-group">
-                        <label for="email">Email</label>
-                        <input type="email" class="form-control" id="email" formControlName="email">
-                    </div>
-                    <div class="form-group">
-                        <label for="login">Login</label>
-                        <input type="text" class="form-control" id="login" formControlName="login">
-                    </div>
-                    <div class="form-group">
-                        <label for="password">Password</label>
-                        <input type="password" class="form-control" id="password" formControlName="password">
-                    </div>
-                    <div class="form-group">
-                            <label for="password">Avatar</label>
-                            <input type="file" class="form-control" id="avatar" (change)="detectfile($event)" accept="image/*">
-                        </div>
-                    <div class="form-group">
-                    <button type="submit" class="btn btn-success" [disabled]="usergroup.invalid">Add</button>
-                    </div>
+      <mat-vertical-stepper [linear]="isLinear" #stepper>
+        <mat-step [stepControl]="usergroup">
+          <form [formGroup]="usergroup">
+            <ng-template matStepLabel>Fill out your name</ng-template>
+            <mat-form-field>
+              <mat-label>Name</mat-label>
+              <input matInput placeholder="Last name, First name" formControlName="firstname" required>
+            </mat-form-field>
+            <div>
+                    <button class="btn btn-info" mat-button matStepperNext>Next</button>
+            </div>
+          </form>
+        </mat-step>
+        <mat-step [stepControl]="usergroup">
+          <form [formGroup]="usergroup">
+            <ng-template matStepLabel>Fill out your lastname</ng-template>
+            <mat-form-field>
+              <mat-label>Lastname</mat-label>
+              <input matInput formControlName="lastname"  required>
+            </mat-form-field>
+            <div>
+                    <button class="btn btn-dark" mat-button matStepperPrevious>Back</button>
+                    <button class="btn btn-info" mat-button matStepperNext>Next</button>
+            </div>
+          </form>
+        </mat-step>
+        <mat-step [stepControl]="usergroup">
+                <form [formGroup]="usergroup">
+                  <ng-template matStepLabel>Fill out your email</ng-template>
+                  <mat-form-field>
+                    <mat-label>Email</mat-label>
+                    <input matInput formControlName="email" placeholder="louenkamfrank@gmail.formControlName" required>
+                  </mat-form-field>
+                  <div>
+                        <button class="btn btn-dark" mat-button matStepperPrevious>Back</button>
+                        <button class="btn btn-info" mat-button matStepperNext>Next</button>
+                  </div>
                 </form>
-        </div>
-        <div class="card-footer"><em>assurez vous du bon remplissage de vos champs</em></div>
-      </div>
+        </mat-step>
+        <mat-step [stepControl]="usergroup">
+                <form [formGroup]="usergroup">
+                  <ng-template matStepLabel>Fill out your login</ng-template>
+                  <mat-form-field>
+                    <mat-label>Login</mat-label>
+                    <input matInput formControlName="login" 
+                           required>
+                  </mat-form-field>
+                  <div>
+                        <button class="btn btn-dark" mat-button matStepperPrevious>Back</button>
+                        <button class="btn btn-info" mat-button matStepperNext>Next</button>
+                  </div>
+                </form>
+        </mat-step>
+        <mat-step [stepControl]="usergroup">
+                <form [formGroup]="usergroup">
+                  <ng-template matStepLabel>Fill out your password</ng-template>
+                  <mat-form-field>
+                    <mat-label>Password</mat-label>
+                    <input matInput formControlName="password"
+                           required>
+                  </mat-form-field>
+                  <div>
+                        <button class="btn btn-dark" mat-button matStepperPrevious>Back</button>
+                        <button class="btn btn-info" mat-button matStepperNext>Next</button>
+                  </div>
+                </form>
+         </mat-step>
+         <mat-step >
+                <form >
+                  <ng-template matStepLabel>Choose your Avatar</ng-template>
+                  
+                    <input type="file"  id="avatar" (change)="detectfile($event)" accept="image/*">
+                  
+                  <div>
+                    <button class="btn btn-dark" mat-button matStepperPrevious>Back</button>
+                    <button class="btn btn-info" mat-button matStepperNext>Next</button>
+                  </div>
+                </form>
+              </mat-step>
+        <mat-step>
+                <form [formGroup]="usergroup" (ngSubmit)="adduser()">
+          <ng-template matStepLabel>Done</ng-template>
+          <p>You are now done.</p>
+          <div>
+                <button class="btn btn-dark" mat-button matStepperPrevious>Back</button>
+                <button class="btn btn-info" (click)="stepper.reset()" mat-button matStepperNext>Reset</button>
+            <button type="submit" class="btn btn-success" [disabled]="usergroup.invalid">submit</button>
+          </div>
+            </form>
+        </mat-step>
+      </mat-vertical-stepper>
+    </div>
+    <div class="card-footer"><em>assurez vous du bon remplissage de vos champs</em></div>
+    </div>

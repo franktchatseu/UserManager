@@ -63,7 +63,7 @@ export class UpdateComponent implements OnInit {
     this.userservice.alluser();
     //this.userservice.emitusers();
     
-    this.route.navigate(['user','list',2]);  
+    this.route.navigate(['user','detail',usr.id]);   
    
  }
 

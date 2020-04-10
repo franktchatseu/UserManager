@@ -1,19 +1,35 @@
-<div  class="col-sm-7 col-sm-offset-1">
+<span  class="col-sm-7 col-sm-offset-2 entetelist">
+        <form [formGroup]="recherchegroup" (ngSubmit)="rechercher()">
+            
+            <div class="form-group">
+                    <input type="text" class="from-control" formControlName="motclef" >
+                    <button type="submit" class="btn btn-info btn-sm" [disabled]="recherchegroup.invalid" ><span class="fa fa-search"></span> Chercher</button>
+                    <button type="button" (click)="alluser();" class="btn btn-sm ">Actualiser</button>
+            </div>
+
+        </form>
         
-</div>
-<div  class="col-sm-7 col-sm-offset-1">
+
+</span>
+<span  class="col-sm-7 col-sm-offset-2 entetelist">
     <button class="btn" *ngIf="authservice.userauth.isadmin"  (click)="newuser()">Add New User</button> 
-
-</div>
     
+</span>
 
-    <div  class="col-sm-7 col-sm-offset-1" *ngFor="let user of pageOfItems">
+    
+    <span *ngIf="listuser.length>0" class="col-sm-7 col-sm-offset-1" >
+        <div  class="col-sm-7 col-sm-offset-1" *ngFor="let user of pageOfItems">
         
-        <app-oneuser  [user]="user">
-                
-        </app-oneuser>
-    </div>
+                <app-oneuser  [user]="user">
+                        
+                </app-oneuser>
+            </div>
+    </span>
     
-    <div class="col-xs-12 col-sm-6 col-md-6">
+    <span *ngIf="listuser.length==0" class="col-sm-7 col-sm-offset-1" >
+        Aucun Utilisateur
+    </span>
+    
+    <div class="col-sm-7 col-sm-offset-2">
             <jw-pagination [items]="listuser" [pageSize]=3 (changePage)="onChangePage($event)"></jw-pagination>
     </div>

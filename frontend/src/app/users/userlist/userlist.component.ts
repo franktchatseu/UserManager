@@ -6,6 +6,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { MatDialogModule, MatDialog } from '@angular/material/dialog';
 import { UserFormComponent } from '../user-form/user-form.component';
 import { AuthService } from 'src/app/service/auth.service';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-userlist',
@@ -18,6 +19,9 @@ export class UserlistComponent implements OnInit,OnDestroy {
 @Input() present:boolean=true;
   //liste utilisateur en local
 
+  //variables pour le formulaire de recherche
+  recherchegroup:FormGroup
+
   items = [];
   pageOfItems: Array<any>;
 
@@ -28,7 +32,8 @@ export class UserlistComponent implements OnInit,OnDestroy {
               private userservice:UserService,
               private route:Router,
               private dialog:MatDialog,
-              private authservice:AuthService){ 
+              private authservice:AuthService,
+              private frombuilder:FormBuilder){ 
 
                 
                 
@@ -36,6 +41,9 @@ export class UserlistComponent implements OnInit,OnDestroy {
   }
 
   ngOnInit() {
+    //on initie le formulaire de recherche
+    this.intiform();
+
     this.items = Array(150).fill(0).map((x, i) => ({ id: (i + 1), name: `Item ${i + 1}`}));
     
     this.statusliste=+this.routeactivate.snapshot.params['status'];
@@ -46,6 +54,38 @@ export class UserlistComponent implements OnInit,OnDestroy {
   ngOnDestroy(){
     this.userSubcription.unsubscribe();
   }
+
+  //initialisation du formulaire
+  intiform(){
+    this.recherchegroup=this.frombuilder.group({
+      motclef:['',[Validators.required]]
+    })
+  }
+  //methode de recherche d'un user via le formulaire
+  rechercher(){
+    const motclef=this.recherchegroup.value['motclef'];
+   
+    const user:user=this.userservice.listuser.find(
+      (userobjet)=>{
+        return (userobjet.firstname===motclef)
+        ||(userobjet.lastname===motclef)
+        ||(userobjet.email===motclef);
+       
+      }
+    )
+    if(user==null){
+      this.listuser=[];
+    }
+      
+    else{
+      
+      this.listuser=[];
+      this.listuser.push(user);
+    
+    }
+    
+   }
+  
 
   //pour ajout d'un nouvel user
   newuser(){

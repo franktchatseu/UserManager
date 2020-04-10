@@ -22,6 +22,7 @@ import {MatMenuModule} from '@angular/material/menu';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import {MatDialogModule} from '@angular/material/dialog';
 import {MatCardModule} from '@angular/material/card';
+import {MatStepperModule} from '@angular/material/stepper';
 import { UpdateComponent } from './users/update/update.component';
 import { SpinnerComponent } from './spinner/spinner.component';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
@@ -71,6 +72,7 @@ const approute=[
     MatDialogModule,
     MatCardModule,
     MatInputModule,
+    MatStepperModule,
     HttpClientModule
 
   ],

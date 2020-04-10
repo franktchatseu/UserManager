@@ -11,7 +11,7 @@ import { MatDialogModule, MatDialog } from '@angular/material/dialog';
   styleUrls: ['./user-form.component.scss']
 })
 export class UserFormComponent implements OnInit {
-
+  isLinear = false;
   usergroup:FormGroup;
   avatar:File;
   constructor(private formbuilder:FormBuilder,
@@ -65,11 +65,10 @@ export class UserFormComponent implements OnInit {
 
     //console.log(usr)
     this.userservice.adduser(formdata);
-    
+
     this.route.navigate(['user','list',2]);  
 
-    this.userservice.alluser();
-    this.userservice.emitusers();
+    
    // alert("ajout reussi");
     this.dialog.closeAll();
     
