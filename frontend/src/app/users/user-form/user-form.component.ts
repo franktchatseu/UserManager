@@ -65,8 +65,14 @@ export class UserFormComponent implements OnInit {
 
     //console.log(usr)
     this.userservice.adduser(formdata);
+    
+    this.route.navigate(['user','list',2]);  
+
+    this.userservice.alluser();
+    this.userservice.emitusers();
    // alert("ajout reussi");
     this.dialog.closeAll();
+    
     
   }
 

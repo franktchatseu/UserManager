@@ -82,7 +82,7 @@ class USerController extends Controller
         $user->avatar=$filename;
         //on ajoute dans la base de donnee
         $user->save();
-        $user=user::all();
+       // $user=user::all();
         //cette methode de retour va recharger la page via une requette avec get
         return $user;
     }

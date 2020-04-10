@@ -50,6 +50,8 @@ export class UserlistComponent implements OnInit,OnDestroy {
   //pour ajout d'un nouvel user
   newuser(){
     this.dialog.open(UserFormComponent);
+    this.userservice.alluser();
+    this.userservice.emitusers();
     //this.route.navigate(['user','edit']);
   }
 

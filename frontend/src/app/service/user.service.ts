@@ -75,8 +75,8 @@ adduser(formdata:FormData){
   
       this.http.post<user>(this.server+'/add',formdata).subscribe(
         (data)=>{
-          this.listuser.push(data);
-          this.emitusers();
+          this.alluser();
+          console.log('touts les user:'+this.listuser)
         }
       )
       
